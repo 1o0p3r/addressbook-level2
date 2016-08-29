@@ -10,7 +10,7 @@ public class Address {
 
     public static final String EXAMPLE = "a/123, Clementi Ave 3, #12-34, 231534";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses to be of this format";
-    public static final String ADDRESS_VALIDATION_REGEX = ",+";
+    public static final String ADDRESS_VALIDATION_REGEX = ".+,.+,.+,.+";
     
     private final Block block;
     private final Street street;
@@ -28,10 +28,12 @@ public class Address {
     public Address(String address, boolean isPrivate) throws IllegalValueException {
         this.isPrivate = isPrivate;
         if (!isValidAddress(address)) {
+        	System.out.println("Illegal");
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         String[] addressPortions = address.split(", ");
         this.value = address;
+        //System.out.println(addressPortions[0].trim());
         this.block = new Block(addressPortions[0].trim());
         this.street = new Street(addressPortions[1].trim());
         this.unit = new Unit(addressPortions[2].trim());
