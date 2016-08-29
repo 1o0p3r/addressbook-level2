@@ -46,7 +46,11 @@ public class StorageFile {
     private final JAXBContext jaxbContext;
 
     public final Path path;
-
+    public static class StorageFileException extends FileNotFoundException {
+    	public StorageFileException() {
+    		super(DEFAULT_STORAGE_FILEPATH + "doesn't exist");
+    	}
+    }
     /**
      * @throws InvalidStorageFilePathException if the default path is invalid
      */
@@ -77,7 +81,14 @@ public class StorageFile {
     private static boolean isValidPath(Path filePath) {
         return filePath.toString().endsWith(".txt");
     }
-
+    
+    /**
+     *  Check if a file exists
+     */
+    public boolean isFileExists() {
+    	File file = new File(DEFAULT_STORAGE_FILEPATH);
+    	return file.exists();
+    }
     /**
      * Saves all data to this storage file.
      *
