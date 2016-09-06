@@ -8,29 +8,27 @@ import seedu.addressbook.data.exception.IllegalValueException;
  */
 public class Phone extends Contact{
 
-    public static final String EXAMPLE = "123456789";
-    public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
-    public static final String PHONE_VALIDATION_REGEX = "\\d+";
+	public static final String EXAMPLE = "123456789";
+	public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
+	public static final String PHONE_VALIDATION_REGEX = "\\d+";
 
-    /**
-     * Validates given phone number.
-     *
-     * @throws IllegalValueException if given phone string is invalid.
-     */
-    public Phone(String phone, boolean isPrivate) throws IllegalValueException {
-  
-      	super(phone, isPrivate);
-       if (!isValidPhone(phone)) {
-           throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
-      }
-   
-  
-    }
+	/**
+	 * Validates given phone number.
+	 *
+	 * @throws IllegalValueException if given phone string is invalid.
+	 */
+	public Phone(String phone, boolean isPrivate) throws IllegalValueException {
 
-    /**
-     * Checks if a given string is a valid person phone number.
-     */
-    public static boolean isValidPhone(String test) {
+		super(phone, isPrivate);
+		if (!isValidPhone(phone)) {
+			throw new IllegalValueException(MESSAGE_PHONE_CONSTRAINTS);
+		}
+	}
+
+	/**
+	 * Checks if a given string is a valid person phone number.
+	 */
+	public static boolean isValidPhone(String test) {
 		return test.matches(PHONE_VALIDATION_REGEX);
 	}
 }
