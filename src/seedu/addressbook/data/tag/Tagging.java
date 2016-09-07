@@ -5,15 +5,21 @@ import seedu.addressbook.data.person.Person;
 public class Tagging {
 	private Person person;
 	private Tag tag;
-	private boolean isAdded;
+	private String status;
 	
 	public static final String ADDPREFIX = "+";
 	public static final String DELPREFIX = "-";
 	
-	public Tagging(Person person, Tag tag, boolean isAdded) {
+	public Tagging(Person person, Tag tag, String status) {
 		this.person = person;
 		this.tag = tag;
-		this.isAdded = isAdded;
+		this.status = status;
+	}
+	public void addPerson() {
+		status = ADDPREFIX;
+	}
+	public void delPerson() {
+		status = DELPREFIX;
 	}
 	public Person getPerson() {
 		return this.person;
@@ -21,13 +27,12 @@ public class Tagging {
 	public Tag getTag() {
 		return this.tag;
 	}
-	public boolean getStatus() {
-		return isAdded;
+	public String getStatus() {
+		return this.status;
 	}
 	@Override
 	public String toString() {
-		return (getStatus()? ADDPREFIX: DELPREFIX) + getPerson().getName().toString()
-				+ getTag().toString();
-		
+		return getStatus() + " " +getPerson().getName().toString()
+				+ " " + getTag().toString();
 	}
 }
